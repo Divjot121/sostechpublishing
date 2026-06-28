@@ -28,9 +28,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
-      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans text-foreground bg-background">
+      <body
+        className="min-h-full flex flex-col font-sans text-foreground bg-background"
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

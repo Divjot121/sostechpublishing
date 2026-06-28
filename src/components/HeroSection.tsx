@@ -74,8 +74,8 @@ export function HeroSection() {
                 className="relative z-30 w-64 h-[380px] rounded-r-md shadow-2xl shadow-black/20 flex flex-col items-center justify-center rotate-[-2deg]"
               >
                 <img
-                  src="https://books.google.com/books/publisher/content/images/frontcover/TXOrEAAAQBAJ?fife=w800-h1200"
-                  alt="Learn to Code With Python in 30 Days"
+                  src="https://m.media-amazon.com/images/I/81HGT0ue-6L._SL1500_.jpg"
+                  alt="Artificial Intelligence Unlocked"
                   className="w-full h-full object-cover rounded-r-md"
                 />
                 <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-black/20 to-transparent rounded-l-md mix-blend-multiply" />

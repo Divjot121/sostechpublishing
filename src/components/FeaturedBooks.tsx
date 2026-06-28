@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Eye, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
-import { books as allBooks } from "@/data/books";
+import { books as allBooks, BookData } from "@/data/books";
+import { BookPreviewModal } from "./BookPreviewModal";
 
 const books = allBooks.slice(0, 3);
 
 export function FeaturedBooks() {
+  const [selectedBook, setSelectedBook] = useState<BookData | null>(null);
+
   return (
     <section id="books" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -79,11 +83,19 @@ export function FeaturedBooks() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mt-auto">
-                  <button className="flex items-center justify-center gap-2 py-3 bg-primary text-background rounded-xl font-medium hover:bg-accent transition-colors shadow-lg shadow-black/5">
+                  <a
+                    href={book.buyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-3 bg-primary text-background rounded-xl font-medium hover:bg-accent transition-colors shadow-lg shadow-black/5"
+                  >
                     <ShoppingCart size={18} />
-                    Buy Now
-                  </button>
-                  <button className="flex items-center justify-center gap-2 py-3 bg-secondary/5 dark:bg-white/5 text-foreground rounded-xl font-medium border border-primary/10 hover:bg-secondary/10 dark:hover:bg-white/10 transition-colors">
+                    Buy on Amazon
+                  </a>
+                  <button
+                    onClick={() => setSelectedBook(book)}
+                    className="flex items-center justify-center gap-2 py-3 bg-secondary/5 dark:bg-white/5 text-foreground rounded-xl font-medium border border-primary/10 hover:bg-secondary/10 dark:hover:bg-white/10 transition-colors"
+                  >
                     <Eye size={18} />
                     Preview
                   </button>
@@ -92,6 +104,11 @@ export function FeaturedBooks() {
             </motion.div>
           ))}
         </div>
+
+        <BookPreviewModal
+          book={selectedBook}
+          onClose={() => setSelectedBook(null)}
+        />
       </div>
     </section>
   );
