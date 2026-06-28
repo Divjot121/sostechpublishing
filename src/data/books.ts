@@ -8,6 +8,7 @@ export type BookData = {
   highlights: string[];
   imageUrl: string;
   buyUrl: string;
+  available: boolean;
 };
 
 export const books: BookData[] = [
@@ -19,6 +20,7 @@ export const books: BookData[] = [
     highlights: ["Beginner to Expert", "20+ Python Projects", "LLMs & Generative AI", "Agentic AI Systems", "2026 Edition"],
     imageUrl: "https://m.media-amazon.com/images/I/81HGT0ue-6L._SL1500_.jpg",
     buyUrl: "https://www.amazon.in/dp/B0H6T624HS?dplnkId=15b54b95-c0e0-4826-af5b-c02afac76a32",
+    available: true,
   },
   {
     title: "Learn to Code With Python in 30 Days",
@@ -28,6 +30,7 @@ export const books: BookData[] = [
     highlights: ["Beginner Friendly", "30-Day Learning Path", "Real Projects", "Python Fundamentals", "Problem Solving Skills"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/TXOrEAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Learn+to+Code+With+Python+in+30+Days+Divjot+Singh+Arora",
+    available: true,
   },
   {
     title: "Java Mastery In 60 Days",
@@ -37,6 +40,7 @@ export const books: BookData[] = [
     highlights: ["Structured Learning", "Core Java Concepts", "Practical Exercises", "Career-Oriented Learning"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/-UcKEQAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Java+Mastery+In+60+Days+Divjot+Singh+Arora",
+    available: true,
   },
   {
     title: "Basic Guide To Money For Teenagers",
@@ -46,6 +50,7 @@ export const books: BookData[] = [
     highlights: ["Money Management", "Financial Literacy", "Saving & Budgeting", "Teen Focused"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/me3jEAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Basic+Guide+To+Money+For+Teenagers+Divjot+Singh+Arora",
+    available: true,
   },
   {
     title: "AI Revolution",
@@ -55,6 +60,7 @@ export const books: BookData[] = [
     highlights: ["AI Basics", "Future Trends", "Machine Learning", "Impact"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/s_HkEAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=AI+Revolution+Divjot+Singh+Arora",
+    available: false,
   },
   {
     title: "Startup Playbook",
@@ -64,6 +70,7 @@ export const books: BookData[] = [
     highlights: ["Startup Basics", "Funding", "Scaling", "Leadership"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/1d0nEAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Startup+Playbook+Divjot+Singh+Arora",
+    available: false,
   },
   {
     title: "Business Communication Mastery",
@@ -73,6 +80,7 @@ export const books: BookData[] = [
     highlights: ["Networking", "Public Speaking", "Leadership", "Communication"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/P_2vEAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Business+Communication+Mastery+Divjot+Singh+Arora",
+    available: false,
   },
   {
     title: "Tech Trends 2030",
@@ -82,6 +90,7 @@ export const books: BookData[] = [
     highlights: ["Emerging Tech", "Future Predictions", "Innovation"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/3Rz4EAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Tech+Trends+2030+Divjot+Singh+Arora",
+    available: false,
   },
   {
     title: "Climbing the Corporate Ladder",
@@ -91,5 +100,6 @@ export const books: BookData[] = [
     highlights: ["Career Growth", "Office Politics", "Promotions", "Mentorship"],
     imageUrl: "https://books.google.com/books/publisher/content/images/frontcover/9lY8EAAAQBAJ?fife=w800-h1200",
     buyUrl: "https://www.amazon.in/s?k=Climbing+the+Corporate+Ladder+Divjot+Singh+Arora",
+    available: false,
   }
 ];

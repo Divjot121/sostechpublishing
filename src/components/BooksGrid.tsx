@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Star, Eye, ShoppingCart } from "lucide-react";
+import { Star, Eye, ShoppingCart, Bell } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BookData } from "@/data/books";
 import { BookPreviewModal } from "./BookPreviewModal";
+import { ComingSoonModal } from "./ComingSoonModal";
 
 interface BooksGridProps {
   books: BookData[];
@@ -13,6 +14,7 @@ interface BooksGridProps {
 
 export function BooksGrid({ books }: BooksGridProps) {
   const [selectedBook, setSelectedBook] = useState<BookData | null>(null);
+  const [comingSoonBook, setComingSoonBook] = useState<BookData | null>(null);
 
   if (books.length === 0) {
     return (
@@ -37,14 +39,20 @@ export function BooksGrid({ books }: BooksGridProps) {
         {books.map((book) => (
           <div
             key={book.title}
-            className="group flex flex-col h-full glass-card rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 bg-white/60 dark:bg-gray-900/60 border border-white/40 dark:border-white/10"
+            className="group flex flex-col h-full glass-card rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 bg-white/60 dark:bg-gray-900/60 border border-white/40 dark:border-white/10 relative"
           >
+            {!book.available && (
+              <div className="absolute top-4 right-4 z-10 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase">
+                Coming Soon
+              </div>
+            )}
+
             <div className="h-72 sm:h-80 relative flex items-center justify-center bg-secondary/10 dark:bg-black/20 p-6">
               <Image
                 src={book.imageUrl}
                 alt={book.title}
                 fill
-                className="object-contain p-6 drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                className={`object-contain p-6 drop-shadow-2xl transition-transform duration-500 group-hover:scale-105 ${!book.available ? 'opacity-85' : ''}`}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
@@ -81,22 +89,43 @@ export function BooksGrid({ books }: BooksGridProps) {
               </div>
 
               <div className="grid grid-cols-2 gap-3 mt-auto">
-                <a
-                  href={book.buyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 bg-primary text-background rounded-xl font-medium hover:bg-accent transition-colors shadow-lg shadow-black/5"
-                >
-                  <ShoppingCart size={18} />
-                  Buy on Amazon
-                </a>
-                <button
-                  onClick={() => setSelectedBook(book)}
-                  className="flex items-center justify-center gap-2 py-3 bg-secondary/5 dark:bg-white/5 text-foreground rounded-xl font-medium border border-primary/10 hover:bg-secondary/10 dark:hover:bg-white/10 transition-colors"
-                >
-                  <Eye size={18} />
-                  Preview
-                </button>
+                {book.available ? (
+                  <>
+                    <a
+                      href={book.buyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 py-3 bg-primary text-background rounded-xl font-medium hover:bg-accent transition-colors shadow-lg shadow-black/5 text-sm sm:text-base"
+                    >
+                      <ShoppingCart size={18} />
+                      Buy on Amazon
+                    </a>
+                    <button
+                      onClick={() => setSelectedBook(book)}
+                      className="flex items-center justify-center gap-2 py-3 bg-secondary/5 dark:bg-white/5 text-foreground rounded-xl font-medium border border-primary/10 hover:bg-secondary/10 dark:hover:bg-white/10 transition-colors text-sm sm:text-base"
+                    >
+                      <Eye size={18} />
+                      Preview
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => setComingSoonBook(book)}
+                      className="flex items-center justify-center gap-2 py-3 bg-amber-500 text-black rounded-xl font-semibold hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/10 text-sm sm:text-base"
+                    >
+                      <Bell size={18} />
+                      Notify Me
+                    </button>
+                    <button
+                      onClick={() => setComingSoonBook(book)}
+                      className="flex items-center justify-center gap-2 py-3 bg-secondary/5 dark:bg-white/5 text-foreground rounded-xl font-medium border border-primary/10 hover:bg-secondary/10 dark:hover:bg-white/10 transition-colors text-sm sm:text-base"
+                    >
+                      <Eye size={18} />
+                      Preview
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -106,6 +135,10 @@ export function BooksGrid({ books }: BooksGridProps) {
       <BookPreviewModal
         book={selectedBook}
         onClose={() => setSelectedBook(null)}
+      />
+      <ComingSoonModal
+        book={comingSoonBook}
+        onClose={() => setComingSoonBook(null)}
       />
     </>
   );
